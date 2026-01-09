@@ -1,12 +1,13 @@
 {
   "name": "rams",
   "description": "AI design engineer - accessibility and visual design reviews for your codebase",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "name": "ramsai",
     "email": "rams@rams.ai"
   },
   "homepage": "https://rams.ai",
-  "keywords": ["accessibility", "a11y", "design", "wcag", "review"]
+  "keywords": ["accessibility", "a11y", "design", "wcag", "review"],
+  "commands": ["./commands/"]
 }
 
