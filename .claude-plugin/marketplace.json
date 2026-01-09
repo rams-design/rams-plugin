@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "rams",
-      "source": ".",
+      "source": "./plugins/rams",
       "description": "Accessibility and visual design reviews for your codebase",
       "version": "0.0.0"
     }
