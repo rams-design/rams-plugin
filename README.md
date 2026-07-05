@@ -12,6 +12,12 @@ claude plugin marketplace add anthropics/claude-plugins-community
 claude plugin install rams@claude-community
 ```
 
+Via the open skills ecosystem ([skills.sh](https://www.skills.sh/) — installs into 20+ agents):
+
+```bash
+npx skills add rams-design/rams-plugin
+```
+
 As a Codex plugin (this repo is its own marketplace):
 
 ```bash
