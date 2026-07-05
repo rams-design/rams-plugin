@@ -5,10 +5,11 @@ fixes. Made by [rams.ai](https://www.rams.ai/?utm_source=skill&utm_medium=github
 
 ## Install
 
-As a Claude Code plugin:
+As a Claude Code plugin (community marketplace):
 
 ```bash
-claude plugin install rams@claude-plugins-official
+claude plugin marketplace add anthropics/claude-plugins-community
+claude plugin install rams@claude-community
 ```
 
 Or the one-line installer (Claude Code, Cursor, Codex, Windsurf, Amp, OpenCode, Gemini CLI):
