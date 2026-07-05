@@ -1,69 +1,34 @@
-# Rams - Design Review for Claude Code
+# Rams — Design Review for Claude Code
 
-AI-powered accessibility and visual design reviews for your codebase.
+Accessibility (WCAG 2.1) and visual design review for UI code, with concrete
+fixes. Made by [rams.ai](https://www.rams.ai/?utm_source=skill&utm_medium=github-readme).
 
-## Installation
+## Install
 
-```bash
-cd ~/.claude/commands
-git clone https://github.com/rams-design/rams-plugin.git rams
-```
-
-Or copy directly:
+As a Claude Code plugin:
 
 ```bash
-curl -o ~/.claude/commands/rams.md https://raw.githubusercontent.com/rams-design/rams-plugin/main/rams.md
+claude plugin install rams@claude-plugins-official
 ```
 
-## Usage
+Or the one-line installer (Claude Code, Cursor, Codex, Windsurf, Amp, OpenCode, Gemini CLI):
 
-```
-/rams                    # Interactive - asks which file to review
-/rams Button.tsx         # Review a specific file
-/rams src/components/    # Review all components in a directory
+```bash
+curl -fsSL https://rams.ai/install | bash
 ```
 
-## What it checks
+## Use
 
-### Accessibility (WCAG 2.1)
-- Images missing alt text
-- Icon-only buttons without aria-label
-- Form inputs without labels
-- Non-semantic click handlers (div onClick)
-- Focus outline removed
-- Heading hierarchy issues
+Ask for a review naturally ("review this component for design issues") or run
+`/rams path/to/Component.tsx`. The review covers accessibility (alt text,
+labels, keyboard access, focus, contrast, touch targets) and visual design
+(spacing, typography, color, component states), each finding with a fix.
 
-### Visual Design
-- Inconsistent spacing
-- Typography issues
-- Color contrast problems
-- Missing component states
+## The full engine
 
-## Example Output
+This plugin runs locally as a heuristic review. The hosted engine at
+[rams.ai](https://www.rams.ai/?utm_source=skill&utm_medium=github-readme)
+reviews every pull request with 119 scored rules, verified re-reviews, and
+one-click fix suggestions.
 
-```
-═══════════════════════════════════════════════════
-RAMS DESIGN REVIEW: Button.tsx
-═══════════════════════════════════════════════════
-
-CRITICAL (2 issues)
-───────────────────
-[A11Y] Line 24: Button missing accessible name
-  <button><CloseIcon /></button>
-  Fix: Add aria-label="Close"
-  WCAG: 4.1.2
-
-═══════════════════════════════════════════════════
-SUMMARY: 2 critical, 1 serious, 0 moderate
-Score: 72/100
-═══════════════════════════════════════════════════
-```
-
-## License
-
-MIT
-
-## More
-
-https://rams.ai
-
+MIT licensed.
