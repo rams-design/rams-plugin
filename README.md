@@ -45,4 +45,20 @@ This plugin runs locally as a heuristic review. The hosted engine at
 reviews every pull request with 119 scored rules, verified re-reviews, and
 one-click fix suggestions.
 
+### Rams MCP (the hosted engine as a tool)
+
+The plugin also bundles the [Rams MCP](https://www.rams.ai/mcp?utm_source=skill&utm_medium=github-readme):
+a `review_files` tool that sends UI files to the hosted engine and returns the
+real scored review — all 119 rules, same judgment as a pull request — before
+the code is committed. To enable it, create an API key at
+[rams.ai/app/settings/api-keys](https://www.rams.ai/app/settings/api-keys) and
+set it in your environment:
+
+```bash
+export RAMS_API_KEY=rams_YOUR_KEY
+```
+
+Without a key the local skill still works; the MCP tool simply asks for one.
+MCP reviews count toward your rams.ai plan's monthly quota (free plan: 30/month).
+
 MIT licensed.

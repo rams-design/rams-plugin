@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "rams": {
+      "type": "http",
+      "url": "https://worker.rams.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RAMS_API_KEY}"
+      }
+    }
+  }
+}
