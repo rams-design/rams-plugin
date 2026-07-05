@@ -1,0 +1,14 @@
+{
+  "name": "rams",
+  "interface": {
+    "displayName": "Rams Design Review"
+  },
+  "plugins": [
+    {
+      "name": "rams",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE" },
+      "category": "Productivity"
+    }
+  ]
+}

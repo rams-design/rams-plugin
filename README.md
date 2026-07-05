@@ -12,6 +12,13 @@ claude plugin marketplace add anthropics/claude-plugins-community
 claude plugin install rams@claude-community
 ```
 
+As a Codex plugin (this repo is its own marketplace):
+
+```bash
+codex plugin marketplace add rams-design/rams-plugin
+codex plugin install rams@rams
+```
+
 Or the one-line installer (Claude Code, Cursor, Codex, Windsurf, Amp, OpenCode, Gemini CLI):
 
 ```bash
