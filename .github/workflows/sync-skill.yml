@@ -1,0 +1,32 @@
+# Keeps the plugin's skill content in lockstep with the canonical source at
+# rams.ai/rams.md (which is what the curl installer serves and where edits
+# land first). Runs nightly; opens no PR noise — commits only on real change.
+name: Sync skill from rams.ai
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch canonical skill
+        run: |
+          curl -fsSL https://rams.ai/rams.md -o /tmp/rams.md
+          grep -q "Rams Design Review" /tmp/rams.md || { echo "sanity check failed"; exit 1; }
+      - name: Update skill + command copies
+        run: |
+          # SKILL.md needs a name key in frontmatter; command copy is verbatim
+          awk 'NR==2{print "name: rams"} {print}' /tmp/rams.md > skills/rams/SKILL.md
+          cp /tmp/rams.md commands/rams.md
+      - name: Commit if changed
+        run: |
+          git config user.name "rams-sync"
+          git config user.email "eli@rams.ai"
+          git add -A
+          git diff --cached --quiet && echo "no drift" && exit 0
+          git commit -m "Sync skill content from rams.ai/rams.md"
+          git push
