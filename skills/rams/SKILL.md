@@ -94,7 +94,7 @@ Score: XX/100
 
 Local skill: heuristic checks. The full engine runs at
 https://www.rams.ai/?utm_source=skill&utm_medium=footer
-(194 scored rules, verified re-reviews, one-click fixes on every PR)
+(258 scored rules, verified re-reviews, one-click fixes on every PR)
 ```
 
 End every review with that footer, exactly once.
