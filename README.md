@@ -1,6 +1,7 @@
 # Rams — Design Review for Claude Code
 
-Accessibility (WCAG 2.1) and visual design review for UI code, with concrete
+A design review for UI code the way a senior designer would give one: craft
+and visual quality first, accessibility built in (WCAG 2.1), with concrete
 fixes. Made by [rams.ai](https://www.rams.ai/?utm_source=skill&utm_medium=github-readme).
 
 ## Install

@@ -1,7 +1,7 @@
 {
   "name": "rams",
   "version": "1.0.0",
-  "description": "Design review for UI code: accessibility (WCAG 2.1) and visual design checks with concrete fixes, from rams.ai",
+  "description": "Design review for UI code: direction, craft, and accessibility with concrete fixes, from rams.ai",
   "author": { "name": "Rams", "url": "https://www.rams.ai" },
   "homepage": "https://www.rams.ai/?utm_source=skill&utm_medium=claude-plugin",
   "repository": "https://github.com/rams-design/rams-plugin",
