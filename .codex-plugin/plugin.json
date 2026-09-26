@@ -1,6 +1,6 @@
 {
   "name": "rams",
-  "version": "1.0.0",
-  "description": "Design review for UI code: direction, craft, and accessibility with concrete fixes, from rams.ai",
+  "version": "1.1.0",
+  "description": "Design review for UI code: quick checks while you edit, scored reviews with patches, and accessibility (WCAG 2.2), from rams.ai",
   "skills": "./skills/"
 }
