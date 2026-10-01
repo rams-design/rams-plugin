@@ -26,6 +26,9 @@ codex plugin marketplace add rams-design/rams-plugin
 codex plugin install rams@rams
 ```
 
+The ChatGPT and Codex plugin directory takes a ZIP: `scripts/build-openai-zip.sh`
+builds it from `.codex-plugin/plugin.json`.
+
 Or the one-line installer (Claude Code, Cursor, Codex, Windsurf, Amp, OpenCode, Gemini CLI):
 
 ```bash
