@@ -1,0 +1,15 @@
+{
+  "name": "rams",
+  "description": "Rams, design review for UI code, from rams.ai",
+  "owner": {
+    "name": "Rams",
+    "url": "https://www.rams.ai"
+  },
+  "plugins": [
+    {
+      "name": "rams",
+      "source": "./",
+      "description": "Design review for UI code: quick checks while you edit, scored reviews with patches, and accessibility (WCAG 2.2), from rams.ai"
+    }
+  ]
+}
