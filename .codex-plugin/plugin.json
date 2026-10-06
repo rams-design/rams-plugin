@@ -1,6 +1,120 @@
 {
   "name": "rams",
-  "version": "1.1.0",
-  "description": "Design review for UI code: quick checks while you edit, scored reviews with patches, and accessibility (WCAG 2.2), from rams.ai",
-  "skills": "./skills/"
+  "version": "1.2.0",
+  "description": "Design review for UI code: quick checks while you edit, scored reviews with patches, and accessibility checks (WCAG 2.2), from rams.ai.",
+  "author": {
+    "name": "Rams",
+    "email": "rams@rams.ai",
+    "url": "https://www.rams.ai"
+  },
+  "homepage": "https://www.rams.ai",
+  "repository": "https://github.com/rams-design/rams-plugin",
+  "license": "MIT",
+  "keywords": [
+    "design-review",
+    "ui",
+    "accessibility",
+    "wcag",
+    "react",
+    "swiftui",
+    "design-system",
+    "code-review"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Rams",
+    "shortDescription": "Design review for UI code",
+    "longDescription": "Rams reviews UI code for visual design and accessibility. Send it a React, Vue, Svelte, CSS or SwiftUI file and it returns findings on spacing, type, color, contrast, focus states, labels and touch targets (WCAG 2.2), each with a severity, a category and the file and line.\n\nA quick check answers in about ten seconds while you edit. A full review returns a 0-100 score and a fix for each finding, many as patches you can apply with git apply. After you apply them, Rams checks which fixes landed and which issues are still there.\n\nRams is for developers and designers who build front ends with an agent. It reviews only the files sent in the conversation. It does not read your repository on its own, edit files, run code or judge backend logic. You connect by signing in at rams.ai with Google or GitHub.",
+    "developerName": "Rams",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Quick design checks",
+      "Scored design reviews",
+      "Fix patches",
+      "Fix verification",
+      "Accessibility checks (WCAG 2.2)"
+    ],
+    "websiteURL": "https://www.rams.ai",
+    "supportURL": "https://www.rams.ai/faq",
+    "privacyPolicyURL": "https://www.rams.ai/privacy",
+    "termsOfServiceURL": "https://www.rams.ai/terms",
+    "defaultPrompt": [
+      "Check this React component for design issues.",
+      "Review my settings page and give it a score with fixes.",
+      "I applied the fixes. Check whether they landed."
+    ],
+    "brandColor": "#050505",
+    "brandColorDark": "#DEDEDE",
+    "composerIcon": "./assets/icon.png",
+    "composerIconDark": "./assets/icon-dark.png",
+    "logo": "./assets/logo.png",
+    "logoDark": "./assets/logo-dark.png",
+    "screenshots": ["./assets/screenshot.png"]
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Quick check a pasted React component. The component has an icon-only button with no accessible name and a clickable div with no keyboard support.",
+              "prompt": "Quick check this component for design issues:\n\nexport function Toolbar({ onSave, onOpen }) {\n  return (\n    <div className=\"flex gap-1 p-1\">\n      <button className=\"p-1\" onClick={onSave}><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\"><path d=\"M1 1h10v10H1z\" /></svg></button>\n      <div className=\"text-gray-400 text-xs\" onClick={onOpen}>Open</div>\n    </div>\n  )\n}",
+              "tools_triggered": "quick_review",
+              "expected_behavior": "Calls quick_review once with the component as a file. Returns a short list of issues with severity, category and file:line, including the icon-only button with no accessible name and the clickable div with no role or keyboard handler. Returns no score and no patch."
+            },
+            {
+              "description": "Full review of a form with a score and patches.",
+              "prompt": "Give this signup form a full Rams review with a score and patches:\n\nexport function Signup() {\n  return (\n    <form className=\"p-2\">\n      <input placeholder=\"Email\" className=\"border-none outline-none text-[#bbb]\" />\n      <input type=\"password\" placeholder=\"Password\" className=\"border-none outline-none text-[#bbb]\" />\n      <div className=\"bg-blue-500 text-white px-2 py-1\" onClick={() => {}}>Sign up</div>\n    </form>\n  )\n}",
+              "tools_triggered": "review_files",
+              "expected_behavior": "Calls review_files once. Shows a 0-100 score and a summary, then issues from most to least severe, such as inputs with no labels, removed focus outline, low-contrast text and a div used as a button. Several issues include a unified diff patch. Rams does not edit any file itself."
+            },
+            {
+              "description": "Verify fixes after applying a patch. Run in the same chat, right after the full review case.",
+              "prompt": "I applied the patches to the signup form. Here is the updated file. Check whether the fixes landed:\n\nexport function Signup() {\n  return (\n    <form className=\"p-4 flex flex-col gap-3\">\n      <label htmlFor=\"email\">Email</label>\n      <input id=\"email\" type=\"email\" className=\"border text-gray-900\" />\n      <label htmlFor=\"password\">Password</label>\n      <input id=\"password\" type=\"password\" className=\"border text-gray-900\" />\n      <button type=\"submit\" className=\"bg-blue-700 text-white px-4 py-2\">Sign up</button>\n    </form>\n  )\n}",
+              "tools_triggered": "verify_fixes",
+              "expected_behavior": "Calls verify_fixes with the updated file and the issues from the previous review. Reports which issues are fixed and which are still present, and says whether everything is clear."
+            },
+            {
+              "description": "Ask how many reviews are left on the connected account.",
+              "prompt": "How many Rams reviews do I have left?",
+              "tools_triggered": "usage",
+              "expected_behavior": "Calls usage and reports the plan, the reviews used and the reviews left for the signed-in account. Runs no review and uses no review."
+            },
+            {
+              "description": "Quick check a SwiftUI view with a fixed font size, a small tap target and an image with no accessibility label.",
+              "prompt": "Check this SwiftUI view for design issues:\n\nimport SwiftUI\n\nstruct ProfileHeader: View {\n    var body: some View {\n        HStack(spacing: 2) {\n            Image(\"avatar\").resizable().frame(width: 28, height: 28)\n            Text(\"Priya\").font(.system(size: 11))\n            Button(action: {}) { Image(systemName: \"gearshape\") }\n                .frame(width: 20, height: 20)\n        }\n    }\n}",
+              "tools_triggered": "quick_review",
+              "expected_behavior": "Calls quick_review with the file as ProfileHeader.swift. Returns issues with severity, category and file:line, such as the hardcoded 11pt font that ignores Dynamic Type, the 20pt button below the 44pt minimum tap target, and the image and icon button with no accessibility label."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Deploying code is out of scope. Rams reviews code and has no deploy tool.",
+              "prompt": "Deploy this landing page to production for me.",
+              "expected_behavior": "Calls no Rams tool. Explains that Rams reviews UI code and cannot deploy, and offers to review the page before it ships."
+            },
+            {
+              "description": "A backend file with no UI is out of scope. Rams judges UI code only.",
+              "prompt": "Use Rams to review this Express route for SQL injection:\n\napp.get('/users', (req, res) => db.query(`SELECT * FROM users WHERE id = ${req.query.id}`).then(r => res.json(r)))",
+              "expected_behavior": "Does not call review_files or quick_review. Says Rams reviews UI design and accessibility, not backend security, so it has nothing to review here."
+            },
+            {
+              "description": "Acting on another person's repository or billing is out of scope. Rams cannot change accounts, plans or repositories.",
+              "prompt": "Upgrade my teammate's Rams plan and push these fixes to their GitHub repo.",
+              "expected_behavior": "Calls no Rams tool. Explains that Rams cannot change anyone's plan or billing and cannot push to a repository. Points to the account owner for billing."
+            }
+          ]
+        },
+        "demo_recording_url": "https://drive.google.com/file/d/1XA2vgECNecdXl0o5CmKisXuZxc5YNFr6/view?usp=sharing",
+        "commerce": false,
+        "commerce_description": "No purchases happen in the plugin. Reviews count against the signed-in user's existing Rams account."
+      },
+      "publication": {
+        "countries": ["US", "GB"],
+        "release_notes": "1.2.0 is the first directory release. It connects the hosted Rams reviewer (quick_review, review_files, verify_fixes and usage) through sign-in at rams.ai, and adds a get-started skill, listing details and icons."
+      }
+    }
+  }
 }
