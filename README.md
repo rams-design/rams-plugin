@@ -57,13 +57,17 @@ fix suggestions.
 ### Rams MCP (the hosted engine as a tool)
 
 The plugin also bundles the [Rams MCP](https://www.rams.ai/mcp?utm_source=skill&utm_medium=github-readme),
-the hosted engine as three tools:
+the hosted engine as tools your agent calls:
 
 - `quick_review`: the check to run while editing. Top issues with severity,
   category and file:line in about ten seconds.
 - `review_files`: before committing. A 0-100 score and patches your agent can
   apply, the same judgment a pull request gets.
 - `verify_fixes`: after applying fixes. Confirms they landed, and is free.
+- `review_url`: reviews a live public page by its address, at desktop and
+  phone width. Top issues and a score in up to a minute, one review credit, no
+  patches.
+- `usage`: reviews used and left on your plan. Free.
 
 To connect it in Claude Code, run `/mcp`, pick `rams`, and approve access in
 the browser. You sign in or create a free account as part of that step, and
@@ -80,7 +84,8 @@ Without it connected, the local skill still works as a checklist review.
   installed or run on your machine for it.
 - When your agent calls `quick_review`, `review_files` or `verify_fixes`, it
   sends the contents of the files it chose to review to that server, signed in
-  with your Rams account. Rams reviews them and sends back findings, a score
+  with your Rams account. `review_url` sends only the address of the public
+  page to review. Rams reviews them and sends back findings, a score
   and patches. Nothing is sent until you connect the server and a tool is
   called.
 - Signing in happens in your browser (OAuth). The plugin stores no key and
