@@ -1,7 +1,7 @@
 {
   "name": "rams",
   "displayName": "Rams",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Design review for UI code: quick checks while you edit, scored reviews with patches, and accessibility (WCAG 2.2), from rams.ai",
   "author": {
     "name": "Rams",
@@ -19,5 +19,8 @@
     "code-review"
   ],
   "icon": "./.claude-plugin/icon.svg",
-  "privacyPolicyUrl": "https://www.rams.ai/privacy"
+  "privacyPolicyUrl": "https://www.rams.ai/privacy",
+  "documentationUrl": "https://www.rams.ai/agents",
+  "supportUrl": "https://www.rams.ai/faq",
+  "termsOfServiceUrl": "https://www.rams.ai/terms"
 }
